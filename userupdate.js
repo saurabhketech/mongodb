@@ -1,9 +1,10 @@
+var express = require('express');
+var app = express();
 var mongoose = require('mongoose'); 
 const crypto = require('crypto');
 var async=require('async');
 var url = 'mongodb://localhost/userdetail'; //connection url of the database
 var conn = mongoose.connect(url); //use the connect method to conenct to the server
-
 var users_schema = mongoose.Schema({
   name:String
 }, {
@@ -19,6 +20,9 @@ var usersprofile_schema = mongoose.Schema({
  strict: true,
  collection: 'UsersProfile'
 });
+
+var userobject = conn.model('user', users_schema);    // user object
+var users_profile = conn.model('userprofile', usersprofile_schema);// user profile object
 var password='123';
 var hash=crypto.createHash("md5",password).digest('hex');
 var record_id=[];
@@ -54,49 +58,47 @@ var record=[{
   "password": hash,
 }]
 
-console.log(record[0]);
 
-var userobject = conn.model('user', users_schema);    // user object
-var users_profile = conn.model('userprofile', usersprofile_schema);// user profile object
-
-var conn = mongoose.createConnection(url, function(error, db) {
- if (error) {
-   console.log("Unabel to connect to mongo server ERROR");
- } else {
-   console.log("Connection succesfull");
-   async.each(record, processData, function (err){
+app.get('/', function (req, res) {						//getting the data on browser
+async.each(record, processData, function (err){
     if(err){
-      console.log(err);
+      res.json(err);
+    }else{
     }
    });
- }
-})
-   function processData(record,callback){
-   var detail = new userobject(record);
+res.json("data saved");
+});
+
+
+function processData(record,callback){
+	var detail = new userobject(record);
    detail.save(function(err, records)            // data save in database
    {
-     if(err){
-       throw error;
-     } else {
-       var id = records.get('_id');
-       update(id);
-     }
+   	if(err){
+   		throw error;
+   	} else {
+   		var id = records.get('_id');
+   		update(id);
+   	}
    });
- }
+}
 
 function update(item) {             //updating user profile details..
- var details = new users_profile({
-   user_id: item,
-   dob: "1993-09-18",
-   mobile_no: "8585858585"
- });
- details.save(function(err) {
-   if (err) {
-     console.log(err);
-     process.exit();
-   }
-   else{
-    process.exit();
-  }
-});
+	var details = new users_profile({
+		user_id: item,
+		dob: "1993-09-18",
+		mobile_no: "8585858585"
+	});
+	details.save(function(err) {
+		if (err) {
+			console.log(err);
+		}
+		else{
+			// callback();
+		}
+	});
 }
+
+app.listen(3000, function () {
+	console.log('Example hello listening on port 3000!')	//listning on port 30000
+});
