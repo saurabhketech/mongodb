@@ -79,6 +79,7 @@ function processData(record,callback){
    	} else {
    		var id = records.get('_id');
    		update(id);
+   		callback();
    	}
    });
 }
@@ -94,7 +95,7 @@ function update(item) {             //updating user profile details..
 			console.log(err);
 		}
 		else{
-			// callback();
+			return 1;
 		}
 	});
 }
