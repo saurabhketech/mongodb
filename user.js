@@ -12,8 +12,8 @@ app.post("/", function(req, res) { //getting post data from form...
     var email = req.body.email;
     var pass = req.body.password;
     var hash = crypto.createHash("md5", pass).digest('hex');
-    // console.log(name.length);
-    if ((typeof(name&&email&&pass)=="undefined")||(name == "" || email == "" || pass == "")) {
+    console.log(typeof(name));
+    if (!(name&&email&&pass)) {
         res.send("some fields are missing");
     } else {
         var detail = new req.object({
