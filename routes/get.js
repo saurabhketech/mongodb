@@ -8,14 +8,23 @@ router.all('/users/:id', function(req, res) {
         '_id': userid // here i is flag which set if data is find...
     }, function(err, result) {
         if (err) {
-            res.json("data not found");
+            res.json({
+                status: 0,
+                message: 'user data is not found'
+            });
         } else {
             if (result.length == 0) {
-                res.json("data not found")
-            } else
-            res.json("Name:" + result[0].firstname + "  email:" + result[0].email);
+                res.json({
+                    status: 0,
+                    message: 'user data is not found'
+                });
+            } else {
+                res.json({
+                    status: 1,
+                    message: result
+                });
+            }
         }
-
     });
 });
 module.exports = router;
