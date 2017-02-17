@@ -33,17 +33,12 @@ router.all('/users/:id', function(req, res) {
 router.all('/user/:email', function(req, res) {
 	var email = req.params.email;
 	var object = req.object;
-
 	object.remove({email:email}, function(err, result) {
-		var parsed=JSON.parse(result);			// parsing json result...
-		var array=[];
-		for(var x in parsed){
-			array.push(parsed[x]);
-		}
 		if (err) {
 			res.json(err);
 		}else{
-			if(array[1]==1){
+			var parsed=JSON.parse(result);			// parsing json result...
+			if(parsed.n==1){
 				res.json("data removed")
 			}else{
 				res.json("data not found");
