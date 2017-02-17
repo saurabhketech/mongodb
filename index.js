@@ -16,7 +16,7 @@ app.post("/", function(req, res) { //getting post data from form...
     var email = req.body.email;
     var pass = req.body.password;
     var hash = crypto.createHash("md5", pass).digest('hex');
-    console.log(typeof(name));
+    // console.log(typeof(name));
     if (!(name && email && pass)) {
         res.send("some fields are missing");
     } else {
@@ -30,7 +30,7 @@ app.post("/", function(req, res) { //getting post data from form...
                 if (err) {
                     res.json(err);
                 } else {
-                    res.send("data saved");
+                    res.json("data saved");
                 }
             });
     }
