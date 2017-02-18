@@ -65,27 +65,17 @@ router.all('/user/:email', function(req, res) {
 // sending file into mongodb....
 router.all('/file', function(req, res) {
     // create an incoming form object
-    var formdata = ""
     var form = new formidable.IncomingForm();
     form.parse(req);
     form.uploadDir = path.join(__dirname, '/uploads'); // store all uploads in the /uploads directory
     form.on('file', function(field, file) {
         fs.rename(file.path, path.join(form.uploadDir, file.name));
-        fs.readFile(form.uploadDir + "/" + file.name, 'utf8', function(err, data) {
-            if (err) {
-                return console.log(err);
-            } else {
-                formdata = data;
-            }
-        })
     })
     var gfs = req.object1;
     var busboy = new Busboy({
         headers: req.headers
     });
     var fileId = new mongo.ObjectId();
-    var form = new formidable.IncomingForm();
-    var object = req.object;
     busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
         console.log('got file', filename, mimetype, encoding);
         var writeStream = gfs.createWriteStream({
