@@ -1,0 +1,106 @@
+<html>
+   <head>
+      <title>Gym A</title>
+      <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="style.css">
+      <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans|Ubuntu+Condensed|Yanone+Kaffeesatz" rel="stylesheet">
+      <script type="text/javascript">
+         $(function(){
+            $(".notification").hide();
+            function explode(){
+               var btn='<img src="layer_37.png" height="25%">&emsp;</span><font>Expired pass</font>';
+                     $(".notification").append(btn);
+                     $(".notification").show();
+            }
+            setTimeout(explode, 2000);
+            $("#month").click(function(){
+               var content='<p class="hbody">Month pass</p><p class="hbody"><font color="silver">Price:</font>$50.00 dlls</p>'
+               $("#replace").html(content);
+            })
+            $("#annual").click(function(){
+               var content='<p class="hbody">Annual pass</p><p class="hbody"><font color="silver">Price:</font>$60.00 dlls</p>'
+               $("#replace").html(content);
+            })
+            });
+      </script>
+   </head>
+   <body>
+      <div class="body">
+         <div class="container notification" style="float:left;width:95%;height:10%;">
+         </div>
+         <div class="container-fluid" style="background-color:rgba(0,0,0,0.75)">
+            <div class="row top" style="margin-left:12px">
+               <div class="col-xs-5">
+                  <img  src="test.png" class="image" style="height:18%;width:97%">
+               </div>
+               <div class="col-xs-7 margin">
+                  <h4 style="margin-bottom:2px">Gym A</h4>
+                  <img src="logo.png" style="height:2%;" /> <font style="color:white;font-size:11px"> &nbsp;Zeamo Partner</font>
+                  <br><br>
+                  <a href="#" style="color:#0C66EC">VIEW GYM</a>
+               </div>
+            </div>
+            <br>
+            <div class="row font">
+               <div class="col-xs-4">
+                  <h6 class="heading">Type</h6>
+                  <p class="hbody">Day pass</p>
+               </div>
+               <div class="col-xs-4">
+                  <h6 class="heading">Purchased</h6>
+                  <p class="hbody" style="font-family:Roboto">6/2/2016</p>
+               </div>
+            </div>
+            <br>
+            <div class="row font">
+               <div class="col-xs-12">
+                  <h6 class="heading">Status</h6>
+                  <p class="hbody">Expired 2 Days ago</p>
+               </div>
+            </div>
+            <br>
+            <div class="row font">
+               <div class="col-xs-12">
+                  <h6 class="heading">instructions</h6>
+                  <p class="hbody" id="replace">This Pass  has expired.</p>
+                  <p class="hbody">Purchase a new pass to gain access to this gym.</p>
+               </div>
+            </div>
+            <br>
+            <div class="row btn1">
+               <div class="col-md-12">
+                  <center><button>PURCHASE AGAIN</button></center>
+               </div>
+               <br>
+            </div>
+            <div class="container-fluid">
+               <p class="font heading">Other available passes</p>
+               <hr>
+               <div class="row font">
+                  <div class="col-xs-8" style="padding:0px">
+                     <p class="hbody">Month pass</p>
+                     <p class="hbody"><font color="silver">Price:</font>$50.00 dlls</p>
+                  </div>
+                  <div class="col-xs-4">
+                     <a href="#" class="select" id="month">SELECT</a>
+                  </div>
+               </div>
+               <hr>
+               <div class="row font">
+                  <div class="col-xs-8" style="padding:0px">
+                     <p class="hbody">Annual pass</p>
+                     <p class="hbody"><font color="silver">Price:</font>$60.00 dlls</p>
+                  </div>
+                  <div class="col-xs-4">
+                     <a href="#" class="select" id="annual">SELECT</a>
+                  </div>
+               </div>
+               <hr>
+               <br>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>
